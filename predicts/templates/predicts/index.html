@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>MoviePop</title>
+</head>
+<body>
+<h1>예측하기</h1>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label>영화제목<input name="title"></label>
+    </div>
+    <div>
+        <label>평점<input name="rating"></label>
+    </div>
+    <div>
+        <label>배급사<input name="distributor"></label>
+    </div>
+    <button>예측</button>
+</form>
+<hr>
+{% for p in predicts %}
+    {{ p.title }} - {{ p.rating }} - {{ p.distributor }} : {{ p.num_viewers }}명
+    <hr>
+{% endfor %}
+</body>
+</html>

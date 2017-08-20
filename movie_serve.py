@@ -1,9 +1,9 @@
 import tensorflow as tf
 
 # 모델 불러오기
-sess=tf.Session()
+sess = tf.Session()
 saver = tf.train.import_meta_graph('movie_model.meta')
-saver.restore(sess,tf.train.latest_checkpoint('./'))
+saver.restore(sess, tf.train.latest_checkpoint('./'))
 
 graph = tf.get_default_graph()
 
@@ -34,11 +34,6 @@ W5 = graph.get_tensor_by_name("W5:0")
 B5 = graph.get_tensor_by_name("B5:0")
 hypothesis = tf.matmul(L4, W5) + B5
 
-print("10.0, 1", sess.run(hypothesis, feed_dict={X: [[10.0, 1]], keep_prob: 1}))
-print("10.0, 0", sess.run(hypothesis, feed_dict={X: [[10.0, 0]], keep_prob: 1}))
-print("5.0, 1", sess.run(hypothesis, feed_dict={X: [[5.0, 1]], keep_prob: 1}))
-print("5.0, 0", sess.run(hypothesis, feed_dict={X: [[5.0, 0]], keep_prob: 1}))
-print("1.0, 1", sess.run(hypothesis, feed_dict={X: [[1.0, 1]], keep_prob: 1}))
-print("1.0, 0", sess.run(hypothesis, feed_dict={X: [[1.0, 0]], keep_prob: 1}))
 
-print("A Taxi Driver - 8.48, 1", sess.run(hypothesis, feed_dict={X: [[8.48, 1]], keep_prob: 1}))
+def predict(rating, distributor):
+    return sess.run(hypothesis, feed_dict={X: [[rating, distributor]], keep_prob: 1})[0][0]

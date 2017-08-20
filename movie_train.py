@@ -1,4 +1,5 @@
 import tensorflow as tf
+
 tf.set_random_seed(486)
 
 filename_queue = tf.train.string_input_producer(
