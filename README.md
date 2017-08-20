@@ -11,6 +11,12 @@ movie_train.py - Train Model
 movie_serve.py - Serve Model
 ```
 
+## Requirement
+* Python 3.6.0
+* Tensorflow 1.2.1
+* Django 1.11.3
+
+
 ## Usage
 ```
 python manage.py makemigrations
