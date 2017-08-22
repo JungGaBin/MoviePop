@@ -6,7 +6,7 @@ import urllib
 excel_document = openpyxl.load_workbook('movie_data.xlsx', data_only=True)
 sheet = excel_document.get_sheet_by_name('sheet0')
 
-for i in range(4, 1317):
+for i in range(4, 1032):
     idx = 'B' + str(i)
     r = requests.get("https://search.naver.com/search.naver?query=영화+" + urllib.parse.quote(sheet[idx].value))
     soup = BeautifulSoup(r.text)

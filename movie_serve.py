@@ -7,7 +7,7 @@ saver.restore(sess, tf.train.latest_checkpoint('./'))
 
 graph = tf.get_default_graph()
 
-X = tf.placeholder(tf.float32, shape=[None, 2])
+X = tf.placeholder(tf.float32, shape=[None, 4])
 keep_prob = tf.placeholder(tf.float32)
 
 W1 = graph.get_tensor_by_name("W1:0")
@@ -35,5 +35,6 @@ B5 = graph.get_tensor_by_name("B5:0")
 hypothesis = tf.matmul(L4, W5) + B5
 
 
-def predict(rating, distributor):
-    return sess.run(hypothesis, feed_dict={X: [[rating, distributor]], keep_prob: 1})[0][0]
+def predict(rating_before, rating_after, num_news, distributor):
+    return sess.run(hypothesis, feed_dict={X: [[rating_before, rating_after, num_news, distributor]], keep_prob: 1})[0][
+        0]
