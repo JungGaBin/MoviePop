@@ -15,6 +15,7 @@ movie_serve.py - Serve Model
 * Python 3.6.0
 * Tensorflow 1.2.1
 * Django 1.11.3
+* BeautifulSoup 4.4.0
 
 
 ## Usage
@@ -24,8 +25,3 @@ python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
 ```
-
-## ToDo
-* Front **index.html**
-* Re-Parse **movie_data.xlsx**
-* Update **dataset.scv** **models.py** **forms.py** **movie_serve.py** **views.py**
