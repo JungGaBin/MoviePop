@@ -2,6 +2,8 @@
 
 Predict Number of Movie Viewers
 
+![](http://i.imgur.com/js4QkxO.jpg)
+
 ## Model Info
 ```
 movie_data.xlsx - All Data
