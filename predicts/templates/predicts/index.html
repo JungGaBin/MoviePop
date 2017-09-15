@@ -1,27 +1,117 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="kr">
 <head>
     <meta charset="UTF-8">
     <title>MoviePop</title>
-    <link rel="shortcut icon" type="image/png" href="/static/logo.png"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'logo.png' %}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
           integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
 </head>
 <body>
 
 <nav class="navbar fixed-top navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <img src="/static/logo.png" width="25" height="25" class="d-inline-block align-top" alt="">
+            <img src="{% static 'logo.png' %}" width="25" height="25" class="d-inline-block align-top" alt="">
             MoviePop
         </a>
     </div>
 </nav>
 
-<div class="container" style="margin-top: 76px">
+<div style="margin-top: 56px;background-color: #212121;">
+    <div id="carouselControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <div class="container" style="padding-top: 30px;padding-bottom: 30px;">
+                    <div class="row justify-content-center">
+                        {% for p in predicts %}
+                            <div style="margin: 5px;background-color: black;">
+                                <div class="movie-item">
+                                    <div class="overlay">
+                                        <br><br>
+                                        <div class="movie-name">
+                                            <a href="{{ p.url }}" style="text-decoration: none;">{{ p.title }}</a>
+                                        </div>
+                                        <br>
+                                        <div class="movie-rating">평점 {{ p.rating_before }}</div>
+                                        <br>
+                                        <div class="movie-btn">
+                                            <a class="movie-play" href="#" style="text-decoration: none;">
+                                                <i class="fa fa-play-circle" aria-hidden="true"></i></a>
+                                        </div>
+                                        <br><br><br>
+                                        <div class="movie-btn">
+                                            <a href="#" class="btn btn-outline-light">예매</a>
+                                            <a href="#" class="btn btn-outline-light">뉴스</a>
+                                        </div>
+                                    </div>
+                                    <img src="{{ p.image_url }}" width="180"/>
+                                </div>
+                                <div class="text-center">
+                                    <span style="color: #BDBDBD;font-size: 12px;">예상 관람객 수</span>
+                                    <span style="color: white;font-size: 14px">{{ p.num_viewers }}명</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container" style="padding-top: 30px;padding-bottom: 30px;">
+                    <div class="row justify-content-center">
+                        {% for p in predicts %}
+                            <div style="margin: 5px;background-color: black;">
+                                <div class="movie-item">
+                                    <div class="overlay">
+                                        <br><br>
+                                        <div class="movie-name">
+                                            <a href="{{ p.url }}" style="text-decoration: none;">{{ p.title }}</a>
+                                        </div>
+                                        <br>
+                                        <div class="movie-rating">평점 {{ p.rating_before }}</div>
+                                        <br>
+                                        <div class="movie-btn">
+                                            <a class="movie-play" href="#" style="text-decoration: none;">
+                                                <i class="fa fa-play-circle" aria-hidden="true"></i></a>
+                                        </div>
+                                        <br><br><br>
+                                        <div class="movie-btn">
+                                            <a href="#" class="btn btn-outline-light">예매</a>
+                                            <a href="#" class="btn btn-outline-light">뉴스</a>
+                                        </div>
+                                    </div>
+                                    <img src="{{ p.image_url }}" width="180"/>
+                                </div>
+                                <div class="text-center">
+                                    <span style="color: #BDBDBD;font-size: 12px;">예상 관람객 수</span>
+                                    <span style="color: white;font-size: 14px">{{ p.num_viewers }}명</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 24px">
+
+    {# 예측 요청 따로 빼기 #}
     <form method="post" class="form-inline">
         {% csrf_token %}
         <div class="form-group col-6">
@@ -42,6 +132,8 @@
         </div>
     </form>
     <br>
+    {# 예측 요청 따로 빼기 #}
+
     <div class="container">
         <div class="row">
             {% for p in predicts %}

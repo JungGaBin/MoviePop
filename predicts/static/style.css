@@ -1,0 +1,71 @@
+.movie-item {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #212121;
+}
+
+.movie-item:hover .overlay {
+    opacity: 0.9;
+}
+
+.movie-name {
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    text-align: center;
+}
+
+.movie-name a {
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.movie-name a:hover {
+    color: #03A9F4;
+}
+
+.movie-btn {
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    text-align: center;
+}
+
+.movie-play {
+    font-size: 40px;
+    color: white;
+}
+
+.movie-play:hover {
+    color: #03A9F4;
+}
+
+.movie-rating {
+    width: 100%;
+    color: white;
+    font-size: 15px;
+    position: absolute;
+    text-align: center;
+}
+
+.btn-outline-light {
+    border-radius: 0;
+}
+
+.btn-outline-light:hover {
+    color: #212121;
+}

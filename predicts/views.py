@@ -21,7 +21,9 @@ def index(request):
             return redirect('/')
 
     form = PredictForm()
-    predicts = Predict.objects.order_by("-id")
+    predicts = Predict.objects.order_by("-id")[:5]
+    for p in predicts:
+        p.num_viewers = format(p.num_viewers, ',')
     ctx = {'form': form, 'predicts': predicts}
     return render(request, 'predicts/index.html', ctx)
 
