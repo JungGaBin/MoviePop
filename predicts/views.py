@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from .forms import PredictForm
 from .models import Predict
-import movie_serve
+import datetime
 from bs4 import BeautifulSoup
 import requests
 import urllib
@@ -21,10 +21,18 @@ def index(request):
             return redirect('/')
 
     form = PredictForm()
-    predicts = Predict.objects.order_by("-id")[:5]
-    for p in predicts:
+
+    today = datetime.date.today()
+    now_predicts = Predict.objects.filter(closed=0).filter(release_day__lt=today)
+    before_predicts = Predict.objects.filter(closed=0).filter(release_day__gt=today)
+    end_predicts = Predict.objects.filter(closed=1)
+    for p in now_predicts:
         p.audience_num = format(p.audience_num, ',')
-    ctx = {'form': form, 'predicts': predicts}
+    for p in before_predicts:
+        p.audience_num = format(p.audience_num, ',')
+    for p in end_predicts:
+        p.audience_num = format(p.audience_num, ',')
+    ctx = {'form': form, 'now_predicts': now_predicts, 'before_predicts': before_predicts, 'end_predicts': end_predicts}
     return render(request, 'predicts/index.html', ctx)
 
 

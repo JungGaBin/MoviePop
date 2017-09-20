@@ -69,3 +69,24 @@
 .btn-outline-light:hover {
     color: #212121;
 }
+
+.carousel-indicators li {
+    text-indent: 0;
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    padding-top: 2px;
+    background-color: black;
+    color: #03A9F4;
+}
+
+.carousel-indicators li:hover, .carousel-indicators .active {
+    text-indent: 0;
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    padding-top: 2px;
+    background-color: black;
+    color: #03A9F4;
+    border: 1px solid #03A9F4;
+}

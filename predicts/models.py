@@ -4,7 +4,8 @@ from django.db import models
 # Create your models here.
 class Predict(models.Model):
     title = models.CharField(max_length=128)
-    release_day = models.DateField(default=0)
+    release_day = models.DateField()
+    closed = models.BooleanField()
     naver_url = models.TextField()
     image_url = models.TextField()
     video_url = models.TextField()
