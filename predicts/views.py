@@ -24,14 +24,18 @@ def index(request):
 
     today = datetime.date.today()
     now_predicts = Predict.objects.filter(closed=0).filter(release_day__lt=today)
-    before_predicts = Predict.objects.filter(closed=0).filter(release_day__gt=today)
-    end_predicts = Predict.objects.filter(closed=1)
     for p in now_predicts:
         p.audience_num = format(p.audience_num, ',')
+
+    before_predicts = Predict.objects.filter(closed=0).filter(release_day__gt=today)
     for p in before_predicts:
         p.audience_num = format(p.audience_num, ',')
+
+    end_predicts = Predict.objects.filter(closed=1)
     for p in end_predicts:
         p.audience_num = format(p.audience_num, ',')
+        p.audience_num_real = format(p.audience_num_real, ',')
+
     ctx = {'form': form, 'now_predicts': now_predicts, 'before_predicts': before_predicts, 'end_predicts': end_predicts}
     return render(request, 'predicts/index.html', ctx)
 

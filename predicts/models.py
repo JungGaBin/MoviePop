@@ -25,6 +25,8 @@ class Predict(models.Model):
     actor_effect = models.IntegerField(default=0)
     audience_class = models.IntegerField(default=0)
     audience_num = models.IntegerField(default=0)
+    audience_num_real = models.IntegerField(default=0)
+    accuracy = models.FloatField(default=0)
 
     def __str__(self):
         return self.title

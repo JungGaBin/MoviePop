@@ -33,7 +33,7 @@
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
                 <div class="container" style="padding-top: 30px;padding-bottom: 80px;">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" style="padding-left: 50px;padding-right: 50px">
                         {% for p in now_predicts %}
                             <div style="margin: 5px;background-color: black;">
                                 <div class="movie-item">
@@ -46,7 +46,8 @@
                                         <div class="movie-rating">평점 {{ p.before_grade }}</div>
                                         <br>
                                         <div class="movie-btn">
-                                            <a class="movie-play" href="{{ p.video_url }}" style="text-decoration: none;">
+                                            <a class="movie-play" href="{{ p.video_url }}"
+                                               style="text-decoration: none;">
                                                 <i class="fa fa-play-circle" aria-hidden="true"></i></a>
                                         </div>
                                         <br><br><br>
@@ -55,7 +56,37 @@
                                             <a href="{{ p.news_url }}" class="btn btn-outline-light">뉴스</a>
                                         </div>
                                     </div>
-                                    <img src="{{ p.image_url }}" width="180"/>
+                                    <img src="{{ p.image_url }}" height="256"/>
+                                </div>
+                                <div class="text-center">
+                                    <span style="color: #BDBDBD;font-size: 12px;">예상 관람객 수</span>
+                                    <span style="color: white;font-size: 14px">{{ p.audience_num }}명</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% for p in now_predicts %}
+                            <div style="margin: 5px;background-color: black;">
+                                <div class="movie-item">
+                                    <div class="overlay">
+                                        <br><br>
+                                        <div class="movie-name">
+                                            <a href="{{ p.naver_url }}" style="text-decoration: none;">{{ p.title }}</a>
+                                        </div>
+                                        <br>
+                                        <div class="movie-rating">평점 {{ p.before_grade }}</div>
+                                        <br>
+                                        <div class="movie-btn">
+                                            <a class="movie-play" href="{{ p.video_url }}"
+                                               style="text-decoration: none;">
+                                                <i class="fa fa-play-circle" aria-hidden="true"></i></a>
+                                        </div>
+                                        <br><br><br>
+                                        <div class="movie-btn">
+                                            <a href="{{ p.reserve_url }}" class="btn btn-outline-light">예매</a>
+                                            <a href="{{ p.news_url }}" class="btn btn-outline-light">뉴스</a>
+                                        </div>
+                                    </div>
+                                    <img src="{{ p.image_url }}" height="256"/>
                                 </div>
                                 <div class="text-center">
                                     <span style="color: #BDBDBD;font-size: 12px;">예상 관람객 수</span>
@@ -68,7 +99,7 @@
             </div>
             <div class="carousel-item">
                 <div class="container" style="padding-top: 30px;padding-bottom: 80px;">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" style="padding-left: 50px;padding-right: 50px">
                         {% for p in before_predicts %}
                             <div style="margin: 5px;background-color: black;">
                                 <div class="movie-item">
@@ -81,16 +112,47 @@
                                         <div class="movie-rating">평점 {{ p.before_grade }}</div>
                                         <br>
                                         <div class="movie-btn">
-                                            <a class="movie-play" href="#" style="text-decoration: none;">
+                                            <a class="movie-play" href="{{ p.video_url }}"
+                                               style="text-decoration: none;">
                                                 <i class="fa fa-play-circle" aria-hidden="true"></i></a>
                                         </div>
                                         <br><br><br>
                                         <div class="movie-btn">
-                                            <a href="#" class="btn btn-outline-light">예매</a>
-                                            <a href="#" class="btn btn-outline-light">뉴스</a>
+                                            <a href="{{ p.reserve_url }}" class="btn btn-outline-light">예매</a>
+                                            <a href="{{ p.news_url }}" class="btn btn-outline-light">뉴스</a>
                                         </div>
                                     </div>
-                                    <img src="{{ p.image_url }}" width="180"/>
+                                    <img src="{{ p.image_url }}" height="256"/>
+                                </div>
+                                <div class="text-center">
+                                    <span style="color: #BDBDBD;font-size: 12px;">예상 관람객 수</span>
+                                    <span style="color: white;font-size: 14px">{{ p.audience_num }}명</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% for p in before_predicts %}
+                            <div style="margin: 5px;background-color: black;">
+                                <div class="movie-item">
+                                    <div class="overlay">
+                                        <br><br>
+                                        <div class="movie-name">
+                                            <a href="{{ p.naver_url }}" style="text-decoration: none;">{{ p.title }}</a>
+                                        </div>
+                                        <br>
+                                        <div class="movie-rating">평점 {{ p.before_grade }}</div>
+                                        <br>
+                                        <div class="movie-btn">
+                                            <a class="movie-play" href="{{ p.video_url }}"
+                                               style="text-decoration: none;">
+                                                <i class="fa fa-play-circle" aria-hidden="true"></i></a>
+                                        </div>
+                                        <br><br><br>
+                                        <div class="movie-btn">
+                                            <a href="{{ p.reserve_url }}" class="btn btn-outline-light">예매</a>
+                                            <a href="{{ p.news_url }}" class="btn btn-outline-light">뉴스</a>
+                                        </div>
+                                    </div>
+                                    <img src="{{ p.image_url }}" height="256"/>
                                 </div>
                                 <div class="text-center">
                                     <span style="color: #BDBDBD;font-size: 12px;">예상 관람객 수</span>
@@ -116,29 +178,29 @@
 <div class="container" style="margin-top: 24px">
 
     {# 예측 요청 따로 빼기 #}
-    <form method="post" class="form-inline">
-        {% csrf_token %}
-        <div class="form-group col-6">
-            <label>네이버 영화 URL</label><input name="naver_url" class="form-control mx-sm-2 col">
-        </div>
-        <div class="form-group col-4">
-            <label>배급사</label>
-            <select name="distributor_effect" class="form-control mx-sm-2 col">
-                <option value="1">CJ E&M</option>
-                <option value="1">SHOWBOX (쇼박스)</option>
-                <option value="1">NEW (넥스트엔터테인먼트월드)</option>
-                <option value="1">LOTTE (롯데엔터테인먼트)</option>
-                <option value="0">기타</option>
-            </select>
-        </div>
-        <div class="col-2">
-            <button class="btn btn-dark col">예측</button>
-        </div>
-    </form>
-    <br>
+    {#    <form method="post" class="form-inline">#}
+    {#        {% csrf_token %}#}
+    {#        <div class="form-group col-6">#}
+    {#            <label>네이버 영화 URL</label><input name="naver_url" class="form-control mx-sm-2 col">#}
+    {#        </div>#}
+    {#        <div class="form-group col-4">#}
+    {#            <label>배급사</label>#}
+    {#            <select name="distributor_effect" class="form-control mx-sm-2 col">#}
+    {#                <option value="1">CJ E&M</option>#}
+    {#                <option value="1">SHOWBOX (쇼박스)</option>#}
+    {#                <option value="1">NEW (넥스트엔터테인먼트월드)</option>#}
+    {#                <option value="1">LOTTE (롯데엔터테인먼트)</option>#}
+    {#                <option value="0">기타</option>#}
+    {#            </select>#}
+    {#        </div>#}
+    {#        <div class="col-2">#}
+    {#            <button class="btn btn-dark col">예측</button>#}
+    {#        </div>#}
+    {#    </form>#}
+    {#    <br>#}
     {# 예측 요청 따로 빼기 #}
-
     <div class="container">
+    <h4>지난 상영작</h4>
         <div class="row">
             {% for p in end_predicts %}
                 <div class="col-6" style="padding: 10px">
@@ -147,14 +209,16 @@
                             <div class="col-4 text-center">
                                 <a href="{{ p.naver_url }}"><img src="{{ p.image_url }}" width="126" height="180"/></a>
                             </div>
-                            <div class="text-center col-5" style="margin-top:3em">
+                            <div class="text-center col-4" style="margin-top:3em">
                                 <h4><a href="{{ p.naver_url }}">{{ p.title }}</a><br></h4>
                                 개봉 전 평점 <span class="badge badge-pill badge-danger">{{ p.before_grade }}</span><br>
                                 개봉 후 평점 <span class="badge badge-pill badge-danger">{{ p.after_grade }}</span>
                             </div>
-                            <div class="col text-center" style="margin-top: 3em">
+                            <div class="col text-center" style="margin-top: 1em">
                                 예상 관람객 수<br><span class="badge badge-dark">{{ p.audience_num }}명</span><br>
-                                <a href="refresh/{{ p.id }}" style="color: inherit;"><i class="fa fa-2x fa-refresh"></i></a>
+                                실제 관람객 수<br><span class="badge badge-dark">{{ p.audience_num_real }}명</span><br>
+                                예측 정확도<br><span class="badge badge-dark">{{ p.accuracy }}%</span><br>
+{#                                <a href="refresh/{{ p.id }}" style="color: inherit;"><i class="fa fa-2x fa-refresh"></i></a>#}
                             </div>
                         </div>
                     </div>
