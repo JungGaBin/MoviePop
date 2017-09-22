@@ -1,0 +1,16 @@
+@relation 'input'
+
+@attribute Screen_num_7 numeric
+@attribute Show_num_7 numeric
+@attribute Money_num_7 numeric
+@attribute Audience_num_7 numeric
+@attribute 'Director Effect' numeric
+@attribute 'Distributor Effect' numeric
+@attribute Month numeric
+@attribute Date numeric
+@attribute Nationality numeric
+@attribute 'Before grade' numeric
+@attribute 'After grade' numeric
+@attribute Age numeric
+@attribute 'Actor Effect' numeric
+@attribute Audience {1,2,3,4,5}

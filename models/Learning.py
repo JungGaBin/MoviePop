@@ -38,7 +38,7 @@ def SimpleLogistic():
     print(pout.buffer_content())
 
     # save model
-    serialization.write("SimpleLogistic.model", cls)
+    serialization.write_all("SimpleLogistic2.model", cls)
 
     # load model
     # classifier = Classifier(jobject=serialization.read("SimpleLogistic.model"))
@@ -60,7 +60,7 @@ def SMOreg():
     print(pout.buffer_content())
 
     # save model
-    serialization.write("SMOreg.model", cls)
+    serialization.write_all("SMOreg.model2", cls)
 
     # load model
     # classifier = Classifier(jobject=serialization.read("SMOreg.model"))    
