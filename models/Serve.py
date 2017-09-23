@@ -10,9 +10,11 @@ import numpy as np
 def SimpleLogistic():
     # load model
     cls = Classifier(jobject=serialization.read("SimpleLogistic.model"))
+    loader = Loader(classname="weka.core.converters.ArffLoader")
+    data = loader.load_file("./input_classification.arff")
     input = np.array([[8148, 42066, 44011723316, 5712639, 1, 1, 7, 30, 1, 8.64, 8.48, 15, 3, 0]])
     instance = ndarray_to_instances(input, relation="input")
-
+    print(data)
     print(instance)
     instance.class_is_last()
     for index, inst in enumerate(instance):
