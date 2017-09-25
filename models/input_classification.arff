@@ -7,10 +7,12 @@
 @attribute 'Director Effect' numeric
 @attribute 'Distributor Effect' numeric
 @attribute Month numeric
-@attribute Date numeric
 @attribute Nationality numeric
 @attribute 'Before grade' numeric
 @attribute 'After grade' numeric
 @attribute Age numeric
 @attribute 'Actor Effect' numeric
 @attribute Audience {1,2,3,4,5}
+
+@data
+8148,42066,44011723316,5712639,1,1,7,1,8.64,8.48,15,3,1
