@@ -1,7 +1,7 @@
 from django.db import models
 
 
-# Create your models here.
+# Create your new_models here.
 class Predict(models.Model):
     title = models.CharField(max_length=128)
     release_day = models.DateField()

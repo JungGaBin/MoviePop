@@ -1,26 +1,28 @@
 from django.shortcuts import render, redirect
 
-from .forms import PredictForm
-from .models import Predict
 import datetime
-from bs4 import BeautifulSoup
-import requests
-import urllib
+from .models import Predict
+# from .forms import PredictForm
+# from bs4 import BeautifulSoup
+# import requests
+# import urllib
 
 
 # Create your views here.
 def index(request):
-    if request.method == 'POST':
-        form = PredictForm(request.POST)
-        if form.is_valid():
-            obj = form.save(commit=False)
-            # obj = update(obj)
-            # obj.audience_num = movie_serve.predict(obj.rating_before, obj.rating_after, obj.num_news, obj.distributor)
-            obj.save()
-
-            return redirect('/')
-
-    form = PredictForm()
+    # OLD MODELS
+    #
+    # if request.method == 'POST':
+    #     form = PredictForm(request.POST)
+    #     if form.is_valid():
+    #         obj = form.save(commit=False)
+    #         obj = update(obj)
+    #         obj.audience_num = movie_serve.predict(obj.rating_before, obj.rating_after, obj.num_news, obj.distributor)
+    #         obj.save()
+    #
+    #         return redirect('/')
+    #
+    # form = PredictForm()
 
     today = datetime.date.today()
     now_predicts = Predict.objects.filter(closed=0).filter(release_day__lt=today)
@@ -36,19 +38,22 @@ def index(request):
         p.audience_num = format(p.audience_num, ',')
         p.audience_num_real = format(p.audience_num_real, ',')
 
-    ctx = {'form': form, 'now_predicts': now_predicts, 'before_predicts': before_predicts, 'end_predicts': end_predicts}
+    ctx = {'now_predicts': now_predicts, 'before_predicts': before_predicts, 'end_predicts': end_predicts}
     return render(request, 'predicts/index.html', ctx)
 
 
-def refresh(request, predict_id):
+def serve(request, predict_id):
+    from new_models import Serve
+
     obj = Predict.objects.get(id=predict_id)
-    # obj = update(obj)
-    # obj.num_viewers = movie_serve.predict(obj.rating_before, obj.rating_after, obj.num_news, obj.distributor)
+    obj.audience_num = Serve.SMOreg(obj)
+    obj.audience_class = Serve.SimpleLogistic(obj)
     obj.save()
 
     return redirect("/")
 
-
+# OLD MODELS
+#
 # def update(obj):
 #     r = requests.get(obj.url.replace('basic', 'point'))
 #     soup = BeautifulSoup(r.text)

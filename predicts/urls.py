@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='home'),
-    url(r'refresh/(?P<predict_id>.+)$', views.refresh)
+    url(r'serve/(?P<predict_id>.+)$', views.serve)
 ]

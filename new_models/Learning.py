@@ -22,8 +22,8 @@ from weka.classifiers import PredictionOutput, KernelClassifier, Kernel
 from weka.core.classes import Random
 from weka.classifiers import Evaluation
 
+
 def SimpleLogistic():
- 
     # load a dataset
     loader = Loader(classname="weka.core.converters.ArffLoader")
     data = loader.load_file("First_trial_classification.arff")
@@ -43,8 +43,8 @@ def SimpleLogistic():
     # load model
     # classifier = Classifier(jobject=serialization.read("SimpleLogistic.model"))
 
-def SMOreg():
 
+def SMOreg():
     loader = Loader(classname="weka.core.converters.ArffLoader")
     data = loader.load_file("First_trial_regression.arff")
     data.class_is_last()
@@ -64,17 +64,18 @@ def SMOreg():
 
     # load model
     # classifier = Classifier(jobject=serialization.read("SMOreg.model"))    
-    
 
-   # train, test = data.train_test_split(66.0, Random(1))
-   # evl.test_model(cls,test)
+
+    # train, test = data.train_test_split(66.0, Random(1))
+    # evl.test_model(cls,test)
+
 
 def main():
-
     if False:
         SMOreg()
     else:
         SimpleLogistic()
+
 
 if __name__ == "__main__":
     try:
